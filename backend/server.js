@@ -7,7 +7,7 @@ const studentRouter = require('./routes/student');
 
 app.use(express.json()); // Middleware to parse JSON body
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 
 app.use('/student', studentRouter); // Mount the router
 
