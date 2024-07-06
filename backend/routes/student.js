@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const createStudent=require('../controllers/studendControllers')
+const {jwtAuthMiddleware} =require('../jwt')
+const {createStudent,loginUser}=require('../controllers/studendControllers')
 
 //routes
-router.post('/',createStudent);
+router.post('/signup',createStudent);
+router.post('/login',loginUser);
 
 module.exports = router;

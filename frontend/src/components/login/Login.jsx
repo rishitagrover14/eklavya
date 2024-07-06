@@ -1,12 +1,44 @@
 import React, { useState } from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../AuthContext";
+
 
 function Login() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8000/student/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error);
+        return;
+      }
+
+      // Successful login, store JWT token if needed
+      login(data?.token);
+      // Redirect to dashboard
+      navigate("/studentportal");
+    } catch (err) {
+      console.error("Login failed:", err);
+      setError("Login failed. Please try again.");
+    }
   };
 
   return (
@@ -16,24 +48,18 @@ function Login() {
         <div className="form-container">
           <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" className="illustration" />
           <h1 className="opacity">LOGIN</h1>
-          <form>
-            <div className="custom-select-container">
-              <select
-                value={selectedOption}
-                onChange={handleOptionChange}
-                className="custom-select"
-                required
-              >
-                <option value="">Select the type of user</option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            <input type="text" placeholder="USERNAME" />
-            <input type="password" placeholder="PASSWORD" />
-            <Link to='/dash' ><button className="opacity" >SUBMIT</button></Link >
-          </form>
+          <form onSubmit={handleLogin}>
+          <input
+          type="email" 
+          placeholder="EMAIL ID"
+          value={email}
+          onChange={(e) => setemail(e.target.value)} />
+
+            <input type="password" placeholder="PASSWORD" 
+            value={password}
+            onChange={(e) => setpassword(e.target.value)}/>
+            <button type="submit" className="opacity"> SUBMIT</button>
+          </form >
           <div className="register-forget opacity">
             <Link to='/signup'><a href=""> New User? <br />REGISTER</a></Link>
             <a href="">FORGOT PASSWORD</a>
