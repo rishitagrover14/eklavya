@@ -165,7 +165,7 @@
     width: 90%;
   }
   
-  .circle-one {
+  .circle-1 {
     top: 0;
     left: 0;
     z-index: -1;
@@ -176,7 +176,7 @@
     -o-transform: translate(-45%, -45%);
   }
   
-  .circle-two {
+  .circle-2 {
     bottom: 0;
     right: 0;
     z-index: -1;

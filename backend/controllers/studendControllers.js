@@ -36,21 +36,25 @@ const loginUser =async(req,res)=>{
   
   // Check if email and password entered by user
   if (!email || !password) {
-    return next(new ErrorHandler("Please enter email and password", 400));
+    // return next(new ErrorHandler("Please enter email and password", 400));
+    return res.status(400).json({error:'Please enter email and password'})
   }
 
   // Finding user in Database
   const user = await Student.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(new ErrorHandler("Invalid Email or Password", 401));
+    // return next(new ErrorHandler("Invalid Email", 401));
+    return res.status(401).json({error:'Invalid Email'})
   }
 
   // Check if password is correct
   const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-  if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid Email or Password", 401));
+   if (!isPasswordMatched) {
+  //   return next(new ErrorHandler("Invalid Email or Password", 401));
+    return res.status(401).json({error:'Invalid Password'})
+
   }
   const payload = {
     id: user.id,
