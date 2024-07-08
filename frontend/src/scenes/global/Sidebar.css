@@ -1,0 +1,48 @@
+.side{
+    top:0;
+    left: 0;
+    background-color: #0f1d38;
+    border: 1px solid hsla(0, 0%, 65%, 0.158);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    width: 15vw;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+}
+.subside{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    gap: 40px;
+}
+
+.usericon{
+    height: 90px;
+    width: 90px;
+}
+ ul{
+    padding: 0;
+}
+.sideitems{
+    color: white;
+    list-style: none;
+    text-align: center;
+    height: 40px;
+    font-size: 17px;
+    font-weight: 600;
+    
+}
+.sideitems:hover{
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    text-decoration: 2px underline white ;
+    cursor: pointer;
+
+}

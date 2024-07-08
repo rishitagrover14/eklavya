@@ -13,16 +13,11 @@ const createStudent=async (req, res) => {
       email,
       password,address,age,mobile
     });
-  
+      if(user.email)
       console.log('Data saved successfully');
-      const payload = {
-        id: user.id,
-    }
-    console.log(JSON.stringify(payload));
-    const token = generateToken(payload);
+     
   res.status(201).json({
-        data:user,
-        token:token
+        data:user
       });
     } catch (error) {
       console.error('Error while saving student data:', error);

@@ -1,9 +1,9 @@
 .mainimg{
-    height: 510px;
+    height: 460px;
+    width: 500px;
     
 }
-.hi{
-    max-width: fit-content;
-    padding: 40px;
+.hi{ 
+    padding: 10px;
     margin: 0px 80px;
 }

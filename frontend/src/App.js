@@ -8,14 +8,13 @@ import About from "./components/About";
 import Login from "./components/login/Login";
 import Signup from "./components/login/Signup";
 import { AuthProvider } from "./AuthContext";
+import StudentDashboard from "./components/StudentPortal.js/StudentDashboard";
 function App() {
 
   const [theme, colorMode] = useMode();
   return (
     <div>
-      <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      
        <BrowserRouter>
        <AuthProvider>
     <Routes>
@@ -24,13 +23,11 @@ function App() {
     <Route path='/home' element={<Home/>}></Route>
     <Route path='/login' element={<Login/>}></Route>
     <Route path='/signup' element={<Signup/>}></Route>
-
+    <Route path='/studentportal' element={<StudentDashboard/>}></Route>
     </Routes>
     </AuthProvider>
     </BrowserRouter>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-    
+     
     </div>
   );
 }

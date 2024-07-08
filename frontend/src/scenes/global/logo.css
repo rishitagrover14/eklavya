@@ -8,6 +8,7 @@
     padding:17px;
     align-items: center;
     gap:50px;
+    color: black;
 }
 .subnav{
     display:flex ;
@@ -18,12 +19,12 @@
 }
 .links{
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18px;
-    color: white;
+    color: #161632;
 }
 .links:hover{
     cursor: pointer;
-    font-weight: 700;
-    border-bottom: 2px solid rgb(255, 248, 248);
+    font-weight: 800;
+    border-bottom: 2px solid #161632;
 }
